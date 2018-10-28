@@ -113,7 +113,7 @@ public class AppointmentController {
 
     @RequestMapping(value = "/response/create", method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
     @ResponseBody
-    public ResponseEntity<?> create(@RequestBody AppointmentResponse appointmentResponse){
+    public ResponseEntity<?> responseCreate(@RequestBody AppointmentResponse appointmentResponse){
         Identifier tmpId = appointmentResponse.getIdentifier();
         if(tmpId.getValue() == null){
             return new ResponseEntity<OperationOutcome>(OperationOutcome.InvalidParameter(),
@@ -144,7 +144,7 @@ public class AppointmentController {
 
     @RequestMapping(value = "/response/read/{id}", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public ResponseEntity<?> read(@PathVariable String id){
+    public ResponseEntity<?> responseRead(@PathVariable String id){
         try{
             Long lId = Long.parseLong(id);
             AppointmentResponse appointmentResponse = appointmentResponseRepo.findAppointmentResponseById(lId);
@@ -161,7 +161,7 @@ public class AppointmentController {
 
     @RequestMapping(value = "/response/update", method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
     @ResponseBody
-    public ResponseEntity<?> update(@RequestBody AppointmentResponse appointmentResponse){
+    public ResponseEntity<?> responseUpdate(@RequestBody AppointmentResponse appointmentResponse){
         Long id = appointmentResponse.getId();
         AppointmentResponse tmp = appointmentResponseRepo.findAppointmentResponseById(id);
         if ( tmp != null){
@@ -180,7 +180,7 @@ public class AppointmentController {
             method = RequestMethod.GET,
             produces = "application/json")
     @ResponseBody
-    public ResponseEntity<?> search(@RequestParam(value = "actor", required=false) Long patient){
+    public ResponseEntity<?> responseSearch(@RequestParam(value = "actor", required=false) Long patient){
         return null;
     }
 
